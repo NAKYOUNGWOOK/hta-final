@@ -41,6 +41,8 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:2.4.0'
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	// thymeleaf
+	//implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 dependencyManagement {
