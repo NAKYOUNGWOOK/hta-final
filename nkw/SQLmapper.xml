@@ -1,0 +1,12 @@
+<!-- 메세지 리스트 가져오기 -->
+<select id="message_list" parameterType="com.groupware.dto.MessageDTO"
+ resultType="com.groupware.dto.MessageDTO">
+ 	select no, room, sender, receiver, date_format(send_time, '%Y-%m-%d %H:%i')
+	send_time, read_time, content, readcheck from message
+	where no in (select max(no) from message group by room)
+	and (sender = #{nick) or receiver=#{nick}) order by no desc;
+</select>
+
+<!-- 메세지 list에서 상대방 profile 가져오기 -->
+<select id="get_other_profile" parameterType="com.groupware.dto.MessageDTO" resultType="String">
+</select>
