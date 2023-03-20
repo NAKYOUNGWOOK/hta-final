@@ -80,9 +80,7 @@ private List<Reply> reply = new ArrayList<Reply>();
     @OneToMany(mappedBy = "employeeNo",cascade = CascadeType.ALL)
     private List<Todolist> list = new ArrayList<Todolist>();
 
-  
 
-   
     @Override
 public String toString() {
 StringBuilder builder = new StringBuilder();
