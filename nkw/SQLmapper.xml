@@ -1,0 +1,85 @@
+<!-- 메세지 리스트 가져오기 -->
+<select id="message_list" parameterType="com.groupware.dto.MessageDTO"
+ resultType="com.groupware.dto.MessageDTO">
+ 	select no, room, sender, receiver, date_format(send_time, '%Y-%m-%d %H:%i')
+	send_time, read_time, content, readcheck from message
+	where no in (select max(no) from message group by room)
+	and (sender = #{nick) or receiver=#{nick}) order by no desc;
+</select>
+
+<!-- 메세지 list에서 상대방 profile 가져오기 -->
+<select id="get_other_profile" parameterType="com.groupware.dto.MessageDTO" resultType="String">
+	select profile from user
+	<choose>
+		<when test="sender == nick">
+			where nick = #{receiver}
+		</when>
+		<otherwise>
+			where nick = #{sender}
+		</otherwise>
+	</choose>
+</select>
+
+<!-- 안 읽은 메세지 갯수 가져오기 -->
+<select id="count_unread" parameterType="com.groupware.dto.MessageDTO" resultType="Int">
+	select count(no) from message
+	where receiver=#{nick} and readcheck=0 and room=#{room}
+</select>
+
+<!-- 메세지 내용 가져오기 -->
+<select id="room_content_list" parameterType="com.groupware.dto.MessageDTO" resultType="com.groupware.dto.MessageDTO">
+	select m.no, m.room, m.sender, m.receiver, date_format(m.sendtime, '%Y-%m-%d %H:%i) sendtime, m.readtime, m.content, m.readcheck, u.profile
+	from message m left outer join user u
+	on m.sender = u.nick
+	<choose>
+		<when test="room != 0">
+			where room=#{room}
+		</when>
+		<otherwise>
+			where (receiver = #{receiver} and sender = #{nick}) or (sender = #{receiver} and receiver =#{nick})
+		</otherwise>
+	</choose>
+</select>
+
+<!-- 메세지 읽음 처리 -->
+<update id="message_readcheck" parameterType="com.groupware.dto.MessageDTO">
+	update message set readcheck=1
+	<choose>
+		<when test="room != 0">
+			where room=#{room} and readcheck=0 and receiver=#{nick}
+		</when>
+		<otherwise>
+			where sender=#{receiver} and readcheck=0 and receiver=#{nick}
+		</otherwise>
+	</choose>
+</update>
+
+<!-- 메세지 리스트에서 메세지 보내기 -->
+<insert id="messageSendInlist" parameterType="com.groupware.dto.MessageDTO">
+	<choose>
+		<when test="room != 0">
+			insert into message values(0, #{room}, #{sender}, #{receiver}, #{content}, now(), now(), 0);
+		</when>
+		<otherwise>
+			insert into message values(0, #{room}, #{sender}, #{receiver}, #{content}, now(), now(), 0);
+		</otherwise>
+	</choose>
+</insert>
+
+<!-- room 번호 최댓값 구하기 -->
+<select id="max_room" parameterType="com.groupware.dto.MessageDTO" resultType="Int">
+	select max(room) from message
+</select>
+
+<!-- 메세지 이력이 있는지 검색 -->
+<select id="exist_chat" parameterType="com.groupware.dto.MessageDTO" resultType="Int">
+	select count(no) from message
+	where (receiver=#{receiver} and sender=#{sender}) or (sender=#{receiver} and receiver=#{sender})
+</select>
+
+<!-- 기존 메세지 내역의 room 번호를 가져옴 -->
+<select id="select_room" parameterType="com.groupware.dto.MessageDTO" resultType="Int">
+	select room from message
+	where (receiver=#{receiver} and sender=#{sender}) or (sender=#{receiver} and receiver=#{sender})
+	limit 0,1
+</select>

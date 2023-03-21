@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Message {
+public class MessageVO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

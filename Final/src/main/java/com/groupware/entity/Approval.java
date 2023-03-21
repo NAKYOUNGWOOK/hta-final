@@ -19,7 +19,6 @@ import lombok.ToString;
 @Getter   
 @Setter  
 @Builder
-@ToString
 
 @Entity
 public class Approval {
