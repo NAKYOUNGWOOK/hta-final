@@ -1,79 +1,59 @@
-<html>
-    <head>
-        <title>SIGN IN</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-    
-<div class="wrapper">
-  <div class="container">
-    <div class="sign-up-container">
-      <form>
-        <h1>Create Account</h1>
-        <div class="social-links">
-          <div>
-            <a href="https://ko-kr.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-          </div>
-          <div>
-            <a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          </div>
-          <div>
-            <a href="https://kr.linkedin.com/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-          </div>
-        </div>
-        <span>or use your email for registration</span>
-        <input maxlength="30" id="inputName" name="signupName" type="text" placeholder="Name">
-        <input maxlength="50" id="inputEmail" name="signupEmail" type="email" placeholder="Email">
-        <input maxlength="30" id="inputPw" name="signupPw" type="password" placeholder="Password">
-        <button class="form_btn">Sign Up</button>
-      </form>
-    </div>
-    <div class="sign-in-container">
-      <form>
-        <h1>Sign In</h1>
-        <div class="social-links">
-          <div>
-            <a href="https://ko-kr.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-          </div>
-          <div>
-            <a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          </div>
-          <div>
-            <a href="https://kr.linkedin.com/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-          </div>
-        </div>
-        <span>or use your account</span>
-        <input maxlength="50" id="loginEmail" name="signInEmail" type="email" placeholder="Email">
-        <input maxlength="30" id="loginPw" name="signInPw" type="password" placeholder="Password">
-        <button class="form_btn">Sign In</button>
-      </form>
-    </div>
-    <div class="overlay-container">
-      <div class="overlay-left">
-        <h1>Welcome Back</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <button id="signIn" class="overlay_btn">Sign In</button>
-      </div>
-      <div class="overlay-right">
-        <h1>Hello, Friend</h1>
-        <p>Enter your personal details and start journey with us</p>
-        <button id="signUp" class="overlay_btn">Sign Up</button>
-      </div>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+<div class="form signup">
+	<div class="form-header">
+		<div class="show-signup">Sign Up</div>
+		<div class="show-signin">Sign In</div>
+		<div class="show-reset">Reset</div>
+	</div>
+	<div class="arrow"></div>
+	<div class="form-elements">
+		<div class="form-element">
+			<input type="text" placeholder="Username">
+		</div>
+		<div class="form-element">
+			<input type="password" placeholder="Password">
+		</div>
+		<div class="form-element">
+			<input type="password" placeholder="Confirm password">
+		</div>
+		<div class="form-element">
+			<button id="submit-btn">Sign Up</button>
+		</div>
+	</div>
 </div>
 
-        <script>
-        const signUpBtn = document.getElementById("signUp");
-        const signInBtn = document.getElementById("signIn");
-        const container = document.querySelector(".container");
 
-        signUpBtn.addEventListener("click", () => {
-          container.classList.add("right-panel-active");
-        });
-        signInBtn.addEventListener("click", () => {
-          container.classList.remove("right-panel-active");
-        });
-        </script>
-    </body>
+<script>
+function resetClass(element, classname){
+	  element.classList.remove(classname);
+	}
+	document.getElementsByClassName("show-signup")[0].addEventListener("click",function(){
+	  let form = document.getElementsByClassName("form")[0];
+	  resetClass(form, "signin");
+	  resetClass(form, "reset");
+	  form.classList.add("signup");
+	  document.getElementById("submit-btn").innerText = "Sign Up";
+	});
+	document.getElementsByClassName("show-signin")[0].addEventListener("click",function(){
+	  let form = document.getElementsByClassName("form")[0];
+	  resetClass(form, "signup");
+	  resetClass(form, "reset");
+	  form.classList.add("signin");
+	  document.getElementById("submit-btn").innerText = "Sign In";
+	});
+	document.getElementsByClassName("show-reset")[0].addEventListener("click",function(){
+	  let form = document.getElementsByClassName("form")[0];
+	  resetClass(form, "signup");
+	  resetClass(form, "signin");
+	  form.classList.add("reset");
+	  document.getElementById("submit-btn").innerText = "Reset password";
+	});
+</script>
+</body>
 </html>
