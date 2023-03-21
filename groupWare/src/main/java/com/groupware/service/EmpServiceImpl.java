@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor  // 밑에 empRepository의 생성자를 쓰지 않기 위해
 public class EmpServiceImpl implements EmpService{
 	
-	private EmpRepository empRepository;
+//	private EmpRepository empRepository;
 	
 	
 	
