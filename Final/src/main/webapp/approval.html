@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Approval</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        <tr th:each="approval : ${approval}">
+            <td th:text="${approval.id}"></td>
+            <td th:text="${approval.title}"></td>
+            <td th:text="${approval.content}"></td>
+        </tr>
+    </table>
+    <a href="/approval/new">New Approval</a>
+</body>
+</html>
