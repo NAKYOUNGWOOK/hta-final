@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.groupware.dao.MessageDAO;
@@ -56,7 +57,7 @@ public class MessageController {
 	//메세지 리스트에서 메세지 보내기
 	@ResponseBody
 	@RequestMapping(value = "/message_send_inlist.do")
-	public int message_send_inlist(@RequestParma int room, @RequestParam String other,
+	public int message_send_inlist(@RequestParam int room, @RequestParam String other,
 									@RequestParam String content, HttpSession session) {
 		
 		MessageDTO to = new MessageDTO();

@@ -2,6 +2,7 @@ package com.groupware.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,7 @@ public class MessageDAO {
 			String profile = sqlSession.selectOne("get_other_profile", mto);
 			
 			mto.setUnread(unread);
-			mot.setProfile(profile);
+			mto.setProfile(profile);
 			
 			//메세지 상대 nick 세팅
 			if(nick.equals(mto.getSender())) {
