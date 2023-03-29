@@ -38,8 +38,7 @@ public class TodolistController {
 
 	@GetMapping(value =  "/allview", produces = "application/json; charset=UTF-8")
 	public ModelAndView allview() throws SQLException {
-		System.out.println("m1()");
-		System.out.println("------------controller----------");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("list", tdSve.getTodolist());

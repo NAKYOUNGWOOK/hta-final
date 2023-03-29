@@ -1,4 +1,4 @@
-package com.groupware5.util;
+package com.groupware.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
