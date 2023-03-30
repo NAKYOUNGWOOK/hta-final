@@ -7,8 +7,8 @@ import javax.persistence.EntityTransaction;
 
 import org.springframework.stereotype.Repository;
 
+import com.groupware.util.DBUtil;
 import com.groupware.vo.Employee;
-import com.groupware5.util.DBUtil;
 
 @Repository
 public class EmployeeDAO {
