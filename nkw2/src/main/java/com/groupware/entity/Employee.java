@@ -34,7 +34,7 @@ import lombok.Setter;
 @Entity
 public class Employee {
 
-@Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeNo;
    
@@ -65,10 +65,16 @@ public class Employee {
     public Employee(int employeeNo) {
     	this.employeeNo = employeeNo;
     }
-   
+
     
-    @OneToMany(mappedBy = "employeeNo", cascade = CascadeType.ALL)
-    private List<Message> list = new ArrayList<Message>();
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<Message> list1 = new ArrayList<Message>();
+    
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<Message> list2 = new ArrayList<Message>();
+
+//    @OneToMany(mappedBy = "employeeNo", cascade = CascadeType.ALL)
+//    private List<Message> list = new ArrayList<Message>();
 
 
     @Override

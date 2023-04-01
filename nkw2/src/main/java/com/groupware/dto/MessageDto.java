@@ -17,16 +17,21 @@ public class MessageDto {
 	private int id;
 	private String title;
 	private String content;
-	private String senderName;
-	private String receiverName;
+	private int senderEmployeeNo;
+	private int receiverEmployeeNo;
+	//custom
+	private String writeDate;
+	private boolean isDeleted;
 	
 	public static MessageDto toDto(Message message) {
 		return new MessageDto(
 				message.getId(),
 				message.getTitle(),
 				message.getContent(),
-				message.getSender().getName(),
-				message.getReceiver().getName()
+				message.getSender().getEmployeeNo(),
+				message.getReceiver().getEmployeeNo(),
+				message.getWriteDate(),
+				message.isDeleted()
 		);
 	}
 }
