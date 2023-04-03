@@ -1,4 +1,4 @@
-package com.groupware;
+package com.groupware.approval;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
